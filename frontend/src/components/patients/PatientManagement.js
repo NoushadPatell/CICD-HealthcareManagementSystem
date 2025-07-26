@@ -29,7 +29,7 @@ const PatientManagement = () => {
   const fetchPatients = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/api/patients');
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/patients`);
       if (response.ok) {
         const data = await response.json();
         setPatients(data);
@@ -46,7 +46,7 @@ const PatientManagement = () => {
   const fetchPatientById = async (id) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/api/patients/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/patients/${id}`);
       if (response.ok) {
         const data = await response.json();
         setSelectedPatient(data);
@@ -69,7 +69,7 @@ const PatientManagement = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/api/patients/search?name=${encodeURIComponent(name)}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/patients/search?name=${encodeURIComponent(name)}`);
       if (response.ok) {
         const data = await response.json();
         setPatients(Array.isArray(data) ? data : [data]);
@@ -86,7 +86,7 @@ const PatientManagement = () => {
   const createPatient = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/api/patients', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/patients`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

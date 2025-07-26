@@ -25,7 +25,7 @@ const DoctorManagement = () => {
   const fetchDoctors = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/api/doctors');
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/doctors`);
       if (response.ok) {
         const data = await response.json();
         setDoctors(data);
@@ -66,8 +66,8 @@ const DoctorManagement = () => {
     setLoading(true);
     try {
       const endpoint = type === 'name' 
-        ? `http://localhost:8080/api/doctors/search?name=${encodeURIComponent(term)}`
-        : `http://localhost:8080/api/doctors/search?specialization=${encodeURIComponent(term)}`;
+        ? `${process.env.REACT_APP_API_URL}/api/doctors/search?name=${encodeURIComponent(term)}`
+        : `${process.env.REACT_APP_API_URL}/api/doctors/search?specialization=${encodeURIComponent(term)}`;
       
       const response = await fetch(endpoint);
       if (response.ok) {
@@ -93,7 +93,7 @@ const DoctorManagement = () => {
         department: newDoctor.department === 'Other' ? newDoctor.customDepartment : newDoctor.department
       };
 
-      const response = await fetch('http://localhost:8080/api/doctors', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/doctors`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

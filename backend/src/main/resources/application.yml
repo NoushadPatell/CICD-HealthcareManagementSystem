@@ -3,14 +3,9 @@ spring:
     name: healthcare-records-api
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
-
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/healthcare_db
-#    username: noushad
-#    password: patel
+    url: jdbc:postgresql://gondola.proxy.rlwy.net:44393/railway
+    username: postgres
+    password: VQibSsneAySyaHUvBUJdAtgmwQYenTKS
 
   jpa:
       hibernate:
