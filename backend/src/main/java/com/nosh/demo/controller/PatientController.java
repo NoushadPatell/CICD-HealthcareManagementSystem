@@ -19,7 +19,7 @@ import java.util.List;
 public class PatientController {
     private final PatientServiceImpl patientService;
 
-    @GetMapping(/hello)
+    @GetMapping("/hello")
     public String helloFromCICD() {
         return "Hello From CICD, Just testing from github !!! ";
     }
