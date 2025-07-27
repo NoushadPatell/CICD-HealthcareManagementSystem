@@ -19,6 +19,11 @@ import java.util.List;
 public class PatientController {
     private final PatientServiceImpl patientService;
 
+    @GetMapping(/hello)
+    public String helloFromCICD() {
+        return "Hello From CICD, Just testing from github !!! ";
+    }
+    
     @PostMapping
     public ResponseEntity<PatientDTO> create(@Valid @RequestBody PatientDTO dto) {
         return ResponseEntity.ok(patientService.createPatient(dto));
