@@ -1,0 +1,35 @@
+name: CI/CD - Backend to Render
+
+on: 
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/ci-cd-backend.yml'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐳 Set Up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔧 Build Backend Docker Image
+        run: docker build -t backend-app .
+
+      - name: ✅ Health Check - Lint or Build (Optional)
+        run: |
+          echo "✔️ You could run unit tests or validations here"
+          echo "Skipping test phase for now"
+
+      - name: 🚀 Deploy to Render (only if build succeeds)
+        run: |
+          echo "Triggering deploy hook..."
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
